@@ -9,8 +9,12 @@
 
 ## 环境地址
 
-测试环境：
-生产环境：
+需要用真实的微信调试，没有测试环境，只有生产环境，将有2个，版本迭代时会交替升级，确保秒级切换和回退。
+
+![avatar](./image/env.png)
+
+环境一：\
+环境二：
 
 ## 请求规范
 
@@ -22,9 +26,9 @@
 |---|---|---|---|
 | chid | string | 是 | 请求渠道号，由本系统分配，请咨询项目经理 |
 | botcode | string | 是 | 机器人编号，用于挂载模拟客户端实例线程到对应的作用域，由WXRC分配，与license一一绑定，请咨询项目经理 |
-| txcode | string | 是 | 请求流水号，建议20位，业务系统生成渠道内唯一编号，至少当日唯一 |
-| txtime | string(14) | 是 | yyyymmddhhmmss |
-| sign | string | 是 | 详见鉴权规则 |
+| txcode | string | 是 | 请求流水号，业务系统生成，要求当日唯一，用于更好的检索日志，及防合法重发 |
+| txtime | string(13) | 是 | 当前时间戳，有合法性校验 |
+| sign | string | 是 | 防篡改，详见鉴权规则 |
 
 * WXRC系统的标准resHead：
 
@@ -32,14 +36,24 @@
 |---|---|---|
 | 无附加 |  |  |
 
-注意，传输格式Content-type=application/x-www-form-urlencoded。返回的是JSON形式的String，key、value都没带双引号。
+注意，传输格式Content-type=application/x-www-form-urlencoded。返回的是JSON形式的String。
 
 
 ## 鉴权规则
 
-* 客户端请求签名步骤:
+采用RSA加密，客户端签名步骤:
 
-拿到HTTP请求body中的JSON串，然后将渠道接入KEY拼接到JSON串后面生成新的字符串，对新串做MD5签名，并在HTTP请求时，在HTTP HEADER中加入X-Ecaspsplus-Signature:签名串  及 X-Ecaspsplus-SignatureType:MD5,签名统一使用UTF-8编码格式.
+①将reqHeader中的chid、botcode、txtime、txcode依次拼接成新的字符串（urlencoded格式）:\
+chid=${value}&botcode=${value}&txcode=${value}&txtime=${value}，比如\
+chid=harmonyOS&botcode=zhaoliwei$&txcode=1574822362251hello$txtime=1574822362251
+
+
+②对拼接后的字符串进行MD5，32位小写，得到了消息摘要：95764bbc8612165edbbfd32bce70948f
+
+③将消息摘要明文转成字节流，用私钥进行加密，得到加密后的字节流，再tostring('base64')，最终得到签名，也就是reqHeader中sign的值。
+
+WXRC除了用公钥解密摘要校验签名，也会校验txtime的周期合法性，以及时间周期内的txcode的唯一性（暂无）。
+
 
 # 登录场景
 
@@ -50,7 +64,7 @@
 ②登录状态下发起登录，比如WXRC系统重启后，和微信的心跳连接并没有事实性断开，这个时候业务系统发起登录，WXRC系统可能会用本地登录信息自动登录到微信端（快速连接），并不会返回二维码，但会异步通知登录成功事件，所以理论上不是必须要用到状态查询接口。
 
 我们不考虑手机号密码登录等其他验证方式。
-注意，由于后端实现机制的问题，目前实测从收到login请求的成功响应到实际微信登录成功约28秒时间，只要没报错，可耐心等待一会。
+注意，由于后端实现机制的问题，目前实测从收到login请求的成功响应到实际微信登录成功，第一次可能长达28秒时间，只要没报错，可耐心等待一会，之后登陆就快了。
 
 
 ## 登录接口{login}
@@ -90,6 +104,8 @@
 | botStatus | string | 机器人当前登录状态，logout代表未登录，login代表已登录，err表示验证端有问题 |
 | rtCode | string | 响应码 |
 | rtMsg | string | 响应消息 |
+
+
 
 # 发送消息给用户
 
