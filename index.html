@@ -19,7 +19,7 @@
     window.$docsify = {
         name: 'WXRC系统',
         repo: 'mandaren/wxrc-docs',
-        loadSidebar: 'siderbar.md',
+        loadSidebar: '_siderbar.md',
         subMaxLevel: 3,
         logo: './wxrc.png',
         coverpage: false,
@@ -34,5 +34,10 @@
   <script src="//unpkg.com/docsify-edit-on-github/index.js"></script>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
   <script src="//unpkg.com/docsify/lib/plugins/search.js"></script>
+  <script>
+    if (typeof navigator.serviceWorker !== 'undefined') {
+      navigator.serviceWorker.register('sw.js')
+    }
+  </script>
 </body>
 </html>
