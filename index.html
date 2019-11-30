@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
   <meta charset="UTF-8">
   <title>WXRC系统文档</title>
@@ -10,15 +10,15 @@
   <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
 </head>
 <body>
-  <nav>
+  <!-- <nav>
     <a href="#/en">EN</a>
     <a href="#/">中文</a>
-  </nav>
+  </nav> -->
   <div id="app"></div>
   <script>
     window.$docsify = {
         name: 'WXRC系统',
-        repo: '',
+        repo: 'mandaren/wxrc-docs',
         loadSidebar: true,
         subMaxLevel: 3,
         logo: './wxrc.png',
@@ -27,7 +27,8 @@
         formatUpdated: '{YYYY}-{MM}-{DD} {HH}:{mm}',
         search: {
             placeholder:'搜索'
-        }
+        },
+        routerMode: 'history'
     }
   </script>
   <script src="//unpkg.com/docsify-edit-on-github/index.js"></script>

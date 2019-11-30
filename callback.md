@@ -80,9 +80,9 @@ header部分，无论请求头和请求体均无特殊附加处理。\
 
 | 字段 | 类型 | 说明 |
 |---|---|---|
-| botcode | string | 机器人编号，跟微信号一一对应，由原业务系统上送时定义，通用字段 |
+| botcode | string | 机器人编号，跟license一一对应，由wxrc分配给原业务系统，通用字段 |
 | type | string | 回调类型，值见标题尾，通用字段 |
-| msgType | string | 消息类型，暂时只有文本，='text' |
+| msgType | string | 消息类型，只有文本，='text' |
 | msgdata | object | 如{'text':'你好','fromId':'yueshif','roomId':'18596282818@chatroom'}，后续随着消息类型的增加，会包括更多信息 |
 
 msgData说明：\
@@ -108,7 +108,7 @@ roomid表示群id，也是回复或主动发送消息必须要拿到的参数，
 
 | 字段 | 类型 | 说明 |
 |---|---|---|
-| botcode | string | 机器人编号，跟微信号一一对应，由原业务系统上送时定义，通用字段 |
+| botcode | string | 机器人编号，跟license一一对应，由wxrc分配给原业务系统，通用字段 |
 | type | string | 回调类型，值见标题尾，通用字段 |
 | msgid | Number | 原消息发送ID，前期木有 |
 
