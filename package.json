@@ -1,0 +1,19 @@
+{
+  "name": "wxrc-docs",
+  "version": "0.3.0",
+  "description": "wechat robot channel api document",
+  "scripts": {
+    "test": "npm start",
+    "start": "docsify serve docs -p 4000"
+  },
+  "keywords": [
+    "wechat",
+    "wxbot",
+    "wxrc"
+  ],
+  "author": "mandaren",
+  "license": "ISC",
+  "dependencies": {
+    "docsify-cli": "^4.1.7"
+  }
+}

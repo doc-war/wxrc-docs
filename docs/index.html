@@ -15,6 +15,12 @@
     <a href="#/">中文</a>
   </nav> -->
   <div id="app"></div>
+  <!-- <script>
+    if (typeof navigator.serviceWorker !== 'undefined') {
+      navigator.serviceWorker.register('js/sw.js')
+    }
+  </script> -->
+  <script src="js/docsify.min.js"></script>
   <script>
     window.$docsify = {
         name: 'WXRC系统',
@@ -31,13 +37,9 @@
         routerMode: 'histroy'
     }
   </script>
-  <script src="//unpkg.com/docsify-edit-on-github/index.js"></script>
-  <script src="js/docsify.min.js"></script>
-  <script src="//unpkg.com/docsify/lib/plugins/search.js"></script>
-  <!-- <script>
-    if (typeof navigator.serviceWorker !== 'undefined') {
-      navigator.serviceWorker.register('js/sw.js')
-    }
-  </script> -->
+  <script src="js/github_edit.js"></script>
+  <script src="js/search.js"></script>
+  <!-- <script src="js/livereload.js"></script> -->
+  
 </body>
 </html>
