@@ -6,6 +6,10 @@
     "test": "npm start",
     "start": "docsify serve docs -p 4000"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mandaren/wxrc-docs"
+  },
   "keywords": [
     "wechat",
     "wxbot",

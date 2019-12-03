@@ -20,11 +20,17 @@
       navigator.serviceWorker.register('js/sw.js')
     }
   </script> -->
-  <script src="js/docsify.min.js"></script>
+  
+  <!-- <script>
+    window.$docsify = {
+      basePath:'https://github.com/mandaren/wxrc-docs/blob/master/docs',
+    }
+  </script> -->
   <script>
     window.$docsify = {
         name: 'WXRC系统',
         repo: 'mandaren/wxrc-docs',
+        // relativePath: true,
         loadSidebar: true,
         subMaxLevel: 3,
         logo: './wxrc.png',
@@ -34,12 +40,13 @@
         search: {
             placeholder:'搜索'
         },
-        routerMode: 'histroy'
+        routerMode: 'hash'
     }
   </script>
   <script src="js/github_edit.js"></script>
   <script src="js/search.js"></script>
-  <!-- <script src="js/livereload.js"></script> -->
+  <!-- <script src="js/docsify.min.js"></script> -->
+  <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
   
 </body>
 </html>

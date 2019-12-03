@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# unset GIT_DIR 
+# DIR_ONE=/home/user/www/blog／  #此目录为服务器页面展示目录 
+# cd $DIR_ONE
+
+# git init
+# git remote add origin ~/repos/xxx-bare.git
+# git clean -df
+# git pull origin master
+
+# pm2 restart xxx  #pm2重启项目即可
+
+
+git init
+git remote add origin https://gitlab.com/mandaren/wxrc-docs.git  #添加远程仓库源
+git push origin master
