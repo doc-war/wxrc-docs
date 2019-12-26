@@ -83,7 +83,7 @@ header部分，无论请求头和请求体均无特殊附加处理。\
 | botcode | string | 机器人编号，跟license一一对应，由wxrc分配给原业务系统，通用字段 |
 | type | string | 回调类型，值见标题尾，通用字段 |
 | msgType | string | 消息类型，只有文本，='text' |
-| msgdata | object | 如{'text':'你好','fromId':'yueshif','roomId':'18596282818@chatroom'}，后续随着消息类型的增加，会包括更多信息 |
+| msgData | object | 如{'text':'你好','fromId':'yueshif','roomId':'18596282818@chatroom'}，后续随着消息类型的增加，会包括更多信息 |
 
 msgData说明：\
 fromid表示消息发送者的微信id，后续你如果想回@，必须拿到此参数\
